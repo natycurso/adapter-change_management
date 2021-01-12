@@ -93,13 +93,13 @@ function processRequestResults(error, response, body, callback) {
 
     if (200 <= statusCode && statusCode <= 299) {
       if (isHibernating(response)) {
-        errorResponse = new Error(`The instance is hibernating`);
+        errorResponse = `The instance is hibernating`;
       } else {
         callback(response, errorResponse);
         return;
       }
     } else if (400 <= statusCode && statusCode <= 499) {
-      var errorResponse = `An ${statusCode} client error ocurred`;
+      errorResponse = `An ${statusCode} client error ocurred`;
     } else if (500 <= statusCode && statusCode <= 599) {
       errorResponse= `An ${statusCode} server error ocurred`;
     } else {
